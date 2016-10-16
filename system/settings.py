@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'articles',
+    'applications.articles',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'lab_web.urls'
+ROOT_URLCONF = 'system.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'lab_web.wsgi.application'
+WSGI_APPLICATION = 'system.wsgi.application'
 
 
 # Database
@@ -77,8 +77,10 @@ WSGI_APPLICATION = 'lab_web.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': BASE_DIR+'/system/'+'mysqldb.conf',
+        },
     }
 }
 
@@ -105,15 +107,27 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'Europe/Kiev'
 
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'uk_UA'
+
+DEFAULT_CHARSET = 'utf8'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
+from django.utils.translation import ugettext_lazy as _
+LANGUAGES = (
+    ('en', _('English')),
+    ('uk_UA', _('Ukrainian')),
+)
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 
 # Static files (CSS, JavaScript, Images)
