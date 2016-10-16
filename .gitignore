@@ -1,0 +1,10 @@
+*.pyc
+mysqldb.conf
+whoosh_index
+Thumbs.db
+.DS_Store
+*.log
+*.dll
+*.lib
+*.exe
+.idea
