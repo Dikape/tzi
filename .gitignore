@@ -8,3 +8,4 @@ Thumbs.db
 *.lib
 *.exe
 .idea
+mysqldb.conf
